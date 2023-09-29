@@ -27,8 +27,7 @@ public class MaquinaExpendedore {
             { 5, 5, 5, 5 }
     };
 
-
-    public void pedirGolosina() {
+       public void pedirGolosina() {
         System.out.println("Introduce la posición de la golosina que quieres (fila, columna): ");
         String pos = sc.nextLine();
         try {
@@ -37,6 +36,9 @@ public class MaquinaExpendedore {
                 System.out.println("Introduce el dinero: ");
                 double dinero = sc.nextDouble();
                 this.darGolosinas(posicion, dinero);
+            }
+            else{
+                System.out.println("la posicion es invalida");
             }
         } catch (Exception e) {
             System.out.println("posición invalida");
