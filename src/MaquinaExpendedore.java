@@ -53,4 +53,8 @@ public class MaquinaExpendedore {
             System.out.println("posición incorrecta");
         }
     }
+
+    public void apagarMaquina() {
+        apagada = true;
+    }
 }
