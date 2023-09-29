@@ -4,8 +4,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         MaquinaExpendedore maquina = new MaquinaExpendedore();
-        boolean apagada = false;
-        while(!apagada) {
+        while(!maquina.apagada) {
             System.out.println("Máquina expendedora de golosinas");
             System.out.println("1. Pedir golosina");
             System.out.println("2. Mostrar golosinas");
@@ -24,8 +23,7 @@ public class App {
                     maquina.rellenarGolosinas();
                     break;
                 case 4:
-                    apagada = true;
-                    System.out.println("Apagando máquina...");
+                    maquina.apagarMaquina();
                     break;
                 default:
                     System.out.println("Opción incorrecta");
