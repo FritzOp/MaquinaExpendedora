@@ -29,9 +29,8 @@ public class MaquinaExpendedore {
 
 
     public void pedirGolosina() {
-        String pos;
         System.out.println("Introduce la posición de la golosina que quieres (fila, columna): ");
-        pos = sc.nextLine();
+        String pos = sc.nextLine();
         try {
             int[] posicion= this.seleccionUsuario(pos);
             if(posicion!=null){
@@ -64,6 +63,44 @@ public class MaquinaExpendedore {
         } else {
             System.out.println("No hay golosinas o no hay dinero suficiente");
                 
+        }
+
+    }
+    public void apagarMaquina() {
+        apagada = true;
+    }
+
+    public void mostrarGolosinas() {
+        for (int i = 0; i < nombresGolosinas.length; i++) {
+            for (int j = 0; j < nombresGolosinas[i].length; j++) {
+                System.out.println("Cantidad de " + nombresGolosinas[i][j] + ": " + cantidad[i][j]);
+            }
+        }
+    }
+
+    public void rellenarGolosinas() {
+
+        System.out.println("Introduce la contraseña de técnico: ");
+        String password = sc.nextLine();
+            if (password.equals("MaquinaExpendedora2017")) {
+            System.out.println("Introduce la posición de la golosina que quieres rellenar (fila, columna): ");
+            String pos = sc.nextLine();
+            try {
+                if (pos.length() == 2) {
+                    int fila = Integer.parseInt(pos.substring(0, 1));
+                    int columna = Integer.parseInt(pos.substring(1));
+                    System.out.println("Introduce la cantidad de golosinas que quieres rellenar: ");
+                    int cantidadRellenar = sc.nextInt();
+                    cantidad[fila][columna] += cantidadRellenar;
+                    System.out.println("Cantidad de golosinas rellenadas: " + cantidadRellenar);
+                } else {
+                    System.out.println("Posición incorrecta");
+                }
+            } catch (Exception e) {
+                System.out.println("Posición incorrecta");
+            }
+        } else {
+            System.out.println("Contraseña incorrecta");
         }
     }
 }
