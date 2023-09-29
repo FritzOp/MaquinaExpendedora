@@ -1,3 +1,5 @@
 public class golosina {
-    String hola="hola edgar";
+    String nombre;
+    double precio;
+    int cantidad;
 }
