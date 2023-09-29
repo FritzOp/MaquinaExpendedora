@@ -32,6 +32,7 @@ public class App {
             }catch(InputMismatchException e){
                 System.out.println("Opción incorrecta");
                 sc.nextLine();
+                sc.close();
             }
         }
     }

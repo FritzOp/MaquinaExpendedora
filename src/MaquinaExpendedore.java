@@ -27,7 +27,7 @@ public class MaquinaExpendedore {
             { 5, 5, 5, 5 }
     };
 
-       public void pedirGolosina() {
+    public void pedirGolosina() {
         System.out.println("Introduce la posición de la golosina que quieres (fila, columna): ");
         String pos = sc.nextLine();
         try {
@@ -73,17 +73,13 @@ public class MaquinaExpendedore {
         System.out.println("Máquina apagada");
         double totalVentas = 0;
         int totalGolosinas = 0;
-        for (int i = 0; i < precio.length; i++) {
-            for (int j = 0; j < precio[i].length; j++) {
-                totalVentas += (5 - cantidad[i][j]) * precio[i][j];
-            }
-        }
+        
         for (int i = 0; i < cantidad.length; i++) {
             for (int j = 0; j < cantidad[i].length; j++) {
                 totalGolosinas += cantidad[i][j];
             }
         }
-        System.out.println("Total ventas: $" + totalVentas);
+        System.out.println("Total ventas: $" + recaudado);
         System.out.println("Total golosinas restantes: " + totalGolosinas);
     }
 
