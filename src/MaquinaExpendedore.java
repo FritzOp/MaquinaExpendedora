@@ -4,6 +4,7 @@ public class MaquinaExpendedore {
     Scanner sc = new Scanner(System.in);
     boolean apagada;
     double recaudado;
+    String contraseña = "MaquinaExpendedora2017";
 
 
     String[][] nombresGolosinas = {
@@ -71,7 +72,6 @@ public class MaquinaExpendedore {
     public void apagarMaquina() {
         apagada = true;
         System.out.println("Máquina apagada");
-        double totalVentas = 0;
         int totalGolosinas = 0;
         
         for (int i = 0; i < cantidad.length; i++) {
@@ -86,34 +86,36 @@ public class MaquinaExpendedore {
     public void mostrarGolosinas() {
         for (int i = 0; i < nombresGolosinas.length; i++) {
             for (int j = 0; j < nombresGolosinas[i].length; j++) {
-                System.out.println("Cantidad de " + nombresGolosinas[i][j] + ": " + cantidad[i][j]);
+                System.out.println("---------------------------------------------------------------");
+                System.out.println("codigo: "+i+j+" " + nombresGolosinas[i][j] + ": " + cantidad[i][j]);
+                System.out.println("---------------------------------------------------------------");
             }
         }
     }
 
     public void rellenarGolosinas() {
-
-        System.out.println("Introduce la contraseña de técnico: ");
-        String password = sc.nextLine();
-            if (password.equals("MaquinaExpendedora2017")) {
-            System.out.println("Introduce la posición de la golosina que quieres rellenar (fila, columna): ");
-            String pos = sc.nextLine();
-            try {
-                if (pos.length() == 2) {
-                    int fila = Integer.parseInt(pos.substring(0, 1));
-                    int columna = Integer.parseInt(pos.substring(1));
+        try {
+            if(this.esTecnico()){
+                System.out.println("Introduce la posición de la golosina que quieres rellenar (fila, columna): ");
+                String pos = sc.nextLine();
+                int[] posicion= this.seleccionUsuario(pos);
+                if (posicion!=null) {
                     System.out.println("Introduce la cantidad de golosinas que quieres rellenar: ");
                     int cantidadRellenar = sc.nextInt();
-                    cantidad[fila][columna] += cantidadRellenar;
+                    cantidad[posicion[0]][posicion[1]] += cantidadRellenar;
                     System.out.println("Cantidad de golosinas rellenadas: " + cantidadRellenar);
-                } else {
-                    System.out.println("Posición incorrecta");
                 }
-            } catch (Exception e) {
-                System.out.println("Posición incorrecta");
             }
-        } else {
-            System.out.println("Contraseña incorrecta");
+            
+            
+        } catch (Exception e) {
+                System.out.println("Posición incorrecta");
         }
     }
+    public boolean esTecnico(){
+        System.out.println("Introduce la contraseña de técnico: ");
+        String contraseña = sc.nextLine();
+        return contraseña.equals(this.contraseña)? true:false;
+    }
+
 }

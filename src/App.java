@@ -5,28 +5,34 @@ public class App {
         Scanner sc = new Scanner(System.in);
         MaquinaExpendedore maquina = new MaquinaExpendedore();
         while(!maquina.apagada) {
-            System.out.println("Máquina expendedora de golosinas");
-            System.out.println("1. Pedir golosina");
-            System.out.println("2. Mostrar golosinas");
-            System.out.println("3. Rellenar golosinas");
-            System.out.println("4. Apagar máquina");
+            System.out.println("---------Máquina expendedora de golosinas------------");
+            System.out.println("-1. Pedir golosina                                  -");
+            System.out.println("-2. Mostrar golosinas                               -");
+            System.out.println("-3. Rellenar golosinas                              -");
+            System.out.println("-4. Apagar máquina                                  -");
+            System.out.println("-----------------------------------------------------");
             try{
             int opcion = sc.nextInt();
                 switch (opcion) {
                 case 1:
                     maquina.pedirGolosina();
+                    
                     break;
                 case 2:
                     maquina.mostrarGolosinas();
+                    
                     break;
                 case 3:
                     maquina.rellenarGolosinas();
+                    
                     break;
                 case 4:
                     maquina.apagarMaquina();
+                    
                     break;
                 default:
                     System.out.println("Opción incorrecta");
+                    
                     break;
             }
             }catch(InputMismatchException e){
