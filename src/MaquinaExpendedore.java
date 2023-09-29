@@ -70,6 +70,21 @@ public class MaquinaExpendedore {
     }
     public void apagarMaquina() {
         apagada = true;
+        System.out.println("Máquina apagada");
+        double totalVentas = 0;
+        int totalGolosinas = 0;
+        for (int i = 0; i < precio.length; i++) {
+            for (int j = 0; j < precio[i].length; j++) {
+                totalVentas += (5 - cantidad[i][j]) * precio[i][j];
+            }
+        }
+        for (int i = 0; i < cantidad.length; i++) {
+            for (int j = 0; j < cantidad[i].length; j++) {
+                totalGolosinas += cantidad[i][j];
+            }
+        }
+        System.out.println("Total ventas: $" + totalVentas);
+        System.out.println("Total golosinas restantes: " + totalGolosinas);
     }
 
     public void mostrarGolosinas() {
