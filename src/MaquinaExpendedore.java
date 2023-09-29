@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class MaquinaExpendedore {
     Scanner sc = new Scanner(System.in);
     boolean apagada;
+    double recaudado;
+
 
     String[][] nombresGolosinas = {
             { "KitKat", "Chicles de fresa", "Lacasitos", "Palotes" },
@@ -26,37 +28,42 @@ public class MaquinaExpendedore {
     };
 
 
-    public boolean pedirGolosina() {
+    public void pedirGolosina() {
         String pos;
         System.out.println("Introduce la posición de la golosina que quieres (fila, columna): ");
         pos = sc.nextLine();
-        int fila, columna;
         try {
-
-            if (pos.length() == 2) {
-                fila = Integer.parseInt(pos.substring(0, 1));
-                columna = Integer.parseInt(pos.substring(1));
-            }else{
-                System.out.println("Posición incorrecta");
-                return false;
+            int[] posicion= this.seleccionUsuario(pos);
+            if(posicion!=null){
+                System.out.println("Introduce el dinero: ");
+                double dinero = sc.nextDouble();
+                this.darGolosinas(posicion, dinero);
             }
-
-            System.out.println("Introduce el dinero: ");
-            double dinero = sc.nextDouble();
-                if (cantidad[fila][columna] > 0 && dinero >= precio[fila][columna]) {
-                    double cambio =  (int) (dinero - precio[fila][columna]);
-                    System.out.println("Aquí tiene su golosina: " + nombresGolosinas[fila][columna]);
-                    cantidad[fila][columna]--;
-                    System.out.println("Precio: $" + precio[fila][columna] + " Cambio: $" + cambio);
-                    return true;
-                } else {
-                    System.out.println("No hay golosinas o no hay dinero suficiente");
-                    return false;
-                }
         } catch (Exception e) {
-            System.out.println("posición incorrecta");
-            return false;
+            System.out.println("posición invalida");
         }
-
+    }
+    public int[] seleccionUsuario(String pos){
+        int[] posicion = new int[2];
+        if (pos.length() == 2) {
+            posicion[0] = Integer.parseInt(pos.substring(0, 1));
+            posicion[1] = Integer.parseInt(pos.substring(1));
+            return (posicion[0]<=3&&posicion[0]>=0)&& (posicion[1]<=3&&posicion[1]>=0)? posicion:null;
+        }  
+        System.out.println("La posicion es invalida");
+        return null;
+    }
+    public void darGolosinas(int[] posicion, double dinero){
+        if (cantidad[posicion[0]][posicion[1]] > 0 && dinero >= precio[posicion[0]][posicion[1]]) {
+            double cambio =  (int) (dinero - precio[posicion[0]][posicion[1]]);
+            System.out.println("Aquí tiene su golosina: " + nombresGolosinas[posicion[0]][posicion[1]]);
+            cantidad[posicion[0]][posicion[1]]--;
+            recaudado+=precio[posicion[0]][posicion[1]];
+            System.out.println("Precio: $" + precio[posicion[0]][posicion[1]] + " Cambio: $" + cambio);
+                
+        } else {
+            System.out.println("No hay golosinas o no hay dinero suficiente");
+                
+        }
     }
 }
