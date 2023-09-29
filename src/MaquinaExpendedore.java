@@ -41,8 +41,11 @@ public class MaquinaExpendedore {
                 double dinero = sc.nextDouble();
                 if (cantidad[fila][columna] > 0 && dinero >= precio[fila][columna]) {
                     double cambio = dinero > precio[fila][columna] ? (int) (dinero - precio[fila][columna]) : 0;
+                    // Disminuir la cantidad de golosinas
+                    cantidad[fila][columna]--;
                     System.out.println("Aquí tiene su golosina: " + nombresGolosinas[fila][columna]);
-                    System.out.println("Precio: $" + precio[fila][columna] + " Cambio: $" + cambio);
+                    // Mostrar el cambio y la cantidad de golosinas
+                    System.out.println("Precio: $" + precio[fila][columna] + " Cambio: $" + cambio+" Cantidad: "+cantidad[fila][columna]);
                 } else {
                     System.out.println("No hay golosinas o no hay dinero suficiente");
                 }
