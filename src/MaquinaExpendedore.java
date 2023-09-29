@@ -52,6 +52,5 @@ public class MaquinaExpendedore {
         } catch (Exception e) {
             System.out.println("posición incorrecta");
         }
-
     }
 }
