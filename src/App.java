@@ -1,33 +1,40 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
         MaquinaExpendedore maquina = new MaquinaExpendedore();
-        
-        do {
+        boolean apagada = false;
+        while(!apagada) {
+            System.out.println("Máquina expendedora de golosinas");
             System.out.println("1. Pedir golosina");
             System.out.println("2. Mostrar golosinas");
             System.out.println("3. Rellenar golosinas");
             System.out.println("4. Apagar máquina");
+            try{
             int opcion = sc.nextInt();
-            switch (opcion) {
+                switch (opcion) {
                 case 1:
                     maquina.pedirGolosina();
                     break;
                 case 2:
-                    // mostrarGolosinas();
+                    maquina.mostrarGolosinas();
                     break;
                 case 3:
-                    // rellenarGolosinas();
+                    maquina.rellenarGolosinas();
                     break;
                 case 4:
-                    maquina.apagarMaquina();
+                    apagada = true;
                     System.out.println("Apagando máquina...");
                     break;
                 default:
                     System.out.println("Opción incorrecta");
                     break;
             }
-        } while (!maquina.apagada);
+            }catch(InputMismatchException e){
+                System.out.println("Opción incorrecta");
+                sc.nextLine();
+            }
+        }
     }
 }
